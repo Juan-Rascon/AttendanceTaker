@@ -48,8 +48,8 @@ are interested in how a product is being used.
 1. Create database: villain_db
 2. Locate the root folder of the HERO application, move into it ('cd' command) then run `npm install`.
 3. Run `npm start`.
-4. Go to http://localhost:3000.
-5. Live Application
+4. Go to [localhost:3000](http://localhost:3000).
+5. [Live Application](#)
 
 # Credits
 This project was worked on by CALA (California Los Angeles) Technologies.
