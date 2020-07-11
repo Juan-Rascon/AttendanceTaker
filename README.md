@@ -43,7 +43,18 @@ are interested in how a product is being used.
     * By event properties
 
 
-# Installation Process
+Explore the app here: [Bottomless Burgers App](https://protected-dawn-84534.herokuapp.com/).
+
+# Table of Contents
+  * [Installation](#Installation)
+  * [Usage](#Usage)
+  * [Contributing](#Contributing)
+  * [Credits](#Credits)
+  * [License](#License)
+  * [Tests](#License)
+  * [Questions](#Questions)
+
+## Installation Process
 
 1. Create database: villain_db
 2. Locate the root folder of the HERO application, move into it ('cd' command) then run `npm install`.
@@ -51,7 +62,16 @@ are interested in how a product is being used.
 4. Go to [localhost:3000](http://localhost:3000).
 5. [Live Application](#)
 
-# Credits
+## Usage
+```
+Key Technologies  Used:
+MVC framework - Node.js - Express - JavaScript - MySQL - Handlebars - jQuery - ORM
+```
+
+## Contributing
+Pull requests are welcome. Please use the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/code_of_conduct.md) and for major changes, please open an issue beforehand to discuss the changes.
+
+## Credits
 This project was worked on by CALA (California Los Angeles) Technologies.
 
 The team consists of:
@@ -61,7 +81,13 @@ The team consists of:
 	• Alek Valencia ([alek2535](https://github.com/alek2535))
 	• Juan Rascon ([jayskratch](https://github.com/jayskratch)).
 
-# License
-[MIT](https://choosealicense.com/licenses/mit/)
-
+## License
+[MIT License](https://github.com/carmenobied/Project-IRX-MVC/blob/master/LICENSE) 
 Copyright © [2020] [CALA Technologies]
+
+## Tests 
+There are currently no tests for this project.
+
+## Questions  
+Have questions? Contact us at:
+##### Email: info.cala@gmail.com 
