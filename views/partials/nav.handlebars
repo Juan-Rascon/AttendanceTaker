@@ -1,0 +1,35 @@
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/images/insight_rx_logo_128x128.png" class="d-inline-block align-top" alt="" loading="lazy">
+   Villain App for HERO API
+  </a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                
+                <li>
+                    <a class="page-scroll" href="/pricing/">Pricing</a>
+                </li>
+                {{#if isAuthenticated}}
+                    <li>
+                        <a class="page-scroll" href="/trips/">My Trips</a>
+                    </li>
+                    <li>
+                        <a href="/users/sign-out" class="page-scroll" data-toggle="modal">Logout</a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a class="page-scroll" data-toggle="modal" data-target="#login-modal">Login/Sign Up</a>
+                    </li>
+                {{/if}}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
