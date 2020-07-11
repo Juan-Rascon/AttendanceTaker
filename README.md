@@ -42,9 +42,6 @@ are interested in how a product is being used.
     * By date range
     * By event properties
 
-
-Explore the app here: [Bottomless Burgers App](https://protected-dawn-84534.herokuapp.com/).
-
 # Table of Contents
   * [Installation](#Installation)
   * [Usage](#Usage)
@@ -54,7 +51,7 @@ Explore the app here: [Bottomless Burgers App](https://protected-dawn-84534.hero
   * [Tests](#License)
   * [Questions](#Questions)
 
-## Installation Process
+## Installation
 
 1. Create database: villain_db
 2. Locate the root folder of the HERO application, move into it ('cd' command) then run `npm install`.
@@ -82,8 +79,7 @@ The team consists of:
 	• Juan Rascon ([jayskratch](https://github.com/jayskratch)).
 
 ## License
-[MIT License](https://github.com/carmenobied/Project-IRX-MVC/blob/master/LICENSE) 
-Copyright © [2020] [CALA Technologies]
+[MIT License](https://github.com/carmenobied/Project-IRX-MVC/blob/master/LICENSE) | Copyright © [2020] [CALA Technologies]
 
 ## Tests 
 There are currently no tests for this project.
