@@ -1,9 +1,27 @@
 <body>
-
-{{!-- TODO: Add Events component here --}}
+{{> nav }}
 
 <h1>Events</h1>
 
-{{!-- Add Table --}}
+<table class="table table-striped">
+   <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Event Name</th>
+      <th scope="col">Count</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each events}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.eventName}}</td>
+      <td><button type="button" class="btn btn-primary">Clicks <span class="badge badge-light">{{this.eventCount}}<span></button></td>
+      <td><button type="button" class="btn btn-danger">Delete</button></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</body>
 
- </body>

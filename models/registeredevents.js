@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Model} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class registeredEvents extends Model {
     /**
@@ -15,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   registeredEvents.init({
     eventName: DataTypes.STRING,
-    eventCount: DataTypes.INTEGER
+    eventCount: {
+      type:DataTypes.INTEGER,
+      defaultValue: 0
+    }
   }, {
     sequelize,
     modelName: 'registeredEvents',

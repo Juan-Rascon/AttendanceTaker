@@ -4,6 +4,5 @@ module.exports = function(app){
     const api = require('./routes/api');
 
     app.use('/', application);
-
     app.use('/api', api);
 }

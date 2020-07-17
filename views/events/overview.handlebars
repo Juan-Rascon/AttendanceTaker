@@ -1,10 +1,12 @@
 <body>
-
+{{> nav }}
 {{!-- TODO: Add Overview component here  --}}
 
 <h1>Overview</h1>
 {{!-- Add Source dropdown --}}
-
+{{#each events}}
+<button type="button" class="btn btn-outline-primary">{{this.eventName}}</button>
+{{/each}}
 {{!-- Add Date Rangr dropdown --}}
 
 {{!-- Add Table --}}
