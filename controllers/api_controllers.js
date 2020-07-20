@@ -10,7 +10,7 @@ exports.deleteEvent = async function(req, res) {
     {where: {
       id: req.params.id
     }
-    })git
+    })
 };
 
 exports.getEvent = async function(req, res) {
