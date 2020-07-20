@@ -4,13 +4,15 @@
 
 <h1>Overview</h1>
 {{!-- Add Source dropdown --}}
+<div id ="wrapper">
 {{#each events}}
-<button type="button" class="btn btn-outline-primary">{{this.eventName}}</button>
+<button type="button" data-id = {{this.id}} class="btn btn-outline-primary">{{this.eventName}}</button>
 {{/each}}
 {{!-- Add Date Rangr dropdown --}}
-
+</div>
 {{!-- Add Table --}}
     
 {{!-- Add Charts --}}
 
  </body>
+<script src="/assets/js/eventOverview.js"></script>

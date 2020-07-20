@@ -5,30 +5,26 @@ exports.addEvent = function(req, res) {
   res.render("events/registerEvents", {submitted: true})});
 };
 
-exports.deleteEvent = function(req, res) {
-  db.registeredEvents.destroy({
-    where: {
+exports.deleteEvent = async function(req, res) {
+  await db.registeredEvents.destroy(
+    {where: {
       id: req.params.id
     }
-  }).then(function(dbregisteredEvents) {
-    res.json(dbregisteredEvents);
-  });
+    })git
 };
 
 exports.getEvent = async function(req, res) {
-  const events = await db.registeredEvents.findAll({
-        attributes: ['id','eventName','eventCount']
-  });
-  return (JSON.stringify(events));
+  const event = await db.registeredEvents.findAll({
+      attributes: ['id','eventName','eventCount'],
+      raw: true})
+  return event;
 };
 
-exports.updateEvent =  function(req, res) {
-  db.registeredEvents.findOne({
-    where: {
+exports.updateEvent = async function(req, res) {
+  const event = await db.registeredEvents.findOne(
+    {where: {
       id: req.params.id
-    },
-    include: [db.Post]
-  }).then(function(dbregisteredEvents) {
-    res.json(dbregisteredEvents);
+    }
   });
+  await event.increment("eventCount");
 };

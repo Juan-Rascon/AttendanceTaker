@@ -1,8 +1,7 @@
-// Env file
-require('dotenv').config();
 
 // Dependencies
 // =============================================================
+
 const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 3000;
@@ -38,7 +37,7 @@ app.use ( (err, req, res, next) => {
         res.status(err.status);
     else
         res.status(500);
-    console.log('Error',err);
+    console.log('error',err);
 });
 // ------- end not found error handler
 

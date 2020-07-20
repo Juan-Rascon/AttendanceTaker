@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const api_controller = require("../controllers/api_controllers");
 
 // TODO: Add a router redirect
