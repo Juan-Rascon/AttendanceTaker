@@ -1,27 +1,27 @@
 var db = require("../models");
 
 exports.addEvent = function(req, res) {
-  db.registeredEvents.create(req.body).then(function(dbregisteredEvents) {
-  res.render("events/registerEvents", {submitted: true})});
+  db.Students.create(req.body).then(function(dbregisteredEvents) {
+  res.render("report/admin", {submitted: true})});
 };
 
 exports.deleteEvent = async function(req, res) {
-  await db.registeredEvents.destroy(
+  await db.Students.destroy(
     {where: {
       id: req.params.id
     }
     })
 };
 
-exports.getEvent = async function(req, res) {
-  const event = await db.registeredEvents.findAll({
-      attributes: ['id','eventName','eventCount'],
+exports.getStudents = async function(req, res) {
+  const event = await db.Students.findAll({
+      attributes: ['id','firstName','lastName'],
       raw: true})
   return event;
 };
 
 exports.updateEvent = async function(req, res) {
-  const event = await db.registeredEvents.findOne(
+  const event = await db.Students.findOne(
     {where: {
       id: req.params.id
     }

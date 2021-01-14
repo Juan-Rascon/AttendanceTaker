@@ -1,0 +1,20 @@
+<body>
+{{> nav }}
+<h1>Admin</h1>
+
+<form action="/api/events" method="POST" >
+  <div class="form-group">
+    <label for="eventTypeName">Add Student</label>
+    <input type="text" name="eventName" class="form-control" id="eventTypeName" aria-describedby="eventName" placeholder="John Doe">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{{#if submitted}}
+    </br>
+    <div class="alert alert-success" role="alert">Student Added Successfully!</div>
+    </br>
+{{/if}}
+{{!-- Add data validation --}}
+    
+</body>

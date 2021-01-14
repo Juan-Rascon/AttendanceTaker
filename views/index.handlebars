@@ -1,15 +1,21 @@
 <body>
 {{> nav }}	
 
-<h1>Villain App</h1>
-
-<ul class="list-group">
-  <li class="list-group-item"><a href="/overview">Overview</a></li>
-  <li class="list-group-item"><a href="/events">Events</a></li>
-  <li class="list-group-item"><a href="/registerEvents">Register New Events</a></li>
-</ul>
-
-<p>Powered by<a href="#" class="text-dark">&nbsp;CALA Technologies</a>.&nbsp;© 2020
+<h1>Take Roll</h1>
+{{!-- Add Source dropdown --}}
+<div id ="container">
+<div class="row">
+{{#each events}}
+  <div class="col-sm-2 btn-group">
+      <button type="button" data-id = {{this.id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+    </div>
+  {{/each}}
+  </div>
+{{!-- Add Date Rangr dropdown --}}
 </div>
-</body>
-<!-- This is the script that serves as an event listener for my eventype -->
+{{!-- Add Table --}}
+    
+{{!-- Add Charts --}}
+
+ </body>
+<script src="/assets/js/eventOverview.js"></script>

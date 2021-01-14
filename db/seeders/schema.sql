@@ -1,3 +1,0 @@
-DROP DATABASE IF EXISTS villain_db;
-
-CREATE DATABASE villain_db;
