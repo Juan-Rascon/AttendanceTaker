@@ -10,13 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Students.hasMany(models.Attendance);
+      models.Attendance.belongsTo(Students);
+
+      Students.belongsToMany(models.Sections, {through: "Enrollment"});
+      models.Sections.belongsToMany(Students, {through: "Enrollment"});
     }
   };
   Students.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    studentID: DataTypes.STRING
+    schoolID: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Students',

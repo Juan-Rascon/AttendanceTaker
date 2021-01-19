@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
+    "makeDB": "node app.js && npx sequelize-cli db:seed:all",
     "production": "export NODE_ENV=production && node app.js",
     "debug": "nodemon --inspect app.js"
   },
@@ -14,12 +15,16 @@
   "dependencies": {
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "bootstrap": "^5.0.0-beta1",
     "express": "^4.17.1",
     "express-handlebars": "^5.0.0",
+    "handlebars-helpers": "^0.10.0",
+    "jscharting": "^3.0.1",
     "lodash": "^4.17.15",
     "moment": "^2.27.0",
     "mysql2": "^2.1.0",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "zingchart": "^2.9.2"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

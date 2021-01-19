@@ -2,15 +2,25 @@
 
     body {
 		margin-top: 2em;
-    	margin-left: 2em;
-    	margin-right: 2em;
+    	margin-left: 0em;
+    	margin-right: 0em;
     	background-color: #c0c0c0;
     }
     div {
     	background-color: #f7f7f7;
-    	padding: 2em;
+    	padding: 0em;
     	width: 100%;
     }
+
+.chart--container {
+  height: 100%;
+  width: 100%;
+  min-height: 530px;
+}
+
+.zc-ref {
+  display: none;
+}
 
 	.title {
 		font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -19,11 +29,17 @@
 	h1, h2, p {
 		color: #324148;
 	}
+
+
+	{{!-- #sectionTabs  a {
+		background-color: #33bbb0;
+	} --}}
 	a:link {
 		color: #33bbb0;
 	}
-	a:visited {
-		color: #13aeed;
+	.btn-primary:disabled {
+		color: black;
+		background-color: #324148;
 	}
 	a:hover {
 		color: #324148;

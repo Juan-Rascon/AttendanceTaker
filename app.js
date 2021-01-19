@@ -8,11 +8,15 @@ const path = require('path');
 const PORT = 5000;
 const db = require("./models");
 const exphbs = require("express-handlebars");
+const helpers = require('handlebars-helpers')(['comparison','collection','object']);
 
 // Sets up the Express App
 // =============================================================
 const app = express();
 
+const hbs = exphbs.create({
+    defaultLayout: "main",
+})
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -22,11 +26,11 @@ app.use(express.json());
 
 // Set Handlebars.
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 //------- Start routes
-// use the routes variable to make middleware to use the routes file.
+// use the routes variable to make middleware to use the routes file.`4
 require('./routes')(app)
 //------- End routes
 
@@ -42,8 +46,8 @@ app.use ( (err, req, res, next) => {
 });
 // ------- end not found error handler
 
-
 db.sequelize.sync().then(function() {
+ 
  app.listen(PORT, function() {
    console.log("App listening on PORT " + PORT);
  });
