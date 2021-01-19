@@ -21,19 +21,23 @@
         <div class="row mx-0">
           {{#Students}}
           {{#if this.Attendances}}
-          {{#eq this.Attendances.0.SectionId 1}}
+          {{#with this.Attendances}}         
+          {{#each this}}
+          {{#eq SectionId 1}}
           <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
-              <button type="button" data-id = {{this.id}} data-section="mathSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{this.id}} disabled>{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{../../this.id}} data-section="mathSection" data-sectionId=1 class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{id}} disabled>{{../../this.firstName}} {{../../this.lastName}}</button>
               <button class="btn btn-danger d-inline-block">Undo</button>
           </div>
           {{else}}
               <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{this.id}} data-section= "mathSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{../../this.id}} data-section= "mathSection" data-sectionId=1 class="btn btn-primary btn-lg btn-block">{{../../this.firstName}} {{../../this.lastName}}</button>
               </div>
           {{/eq}}
+          {{/each}}
+          {{/with}}
           {{else}}
           <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{this.id}} data-section= "mathSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{id}} data-section= "mathSection" data-sectionId=1 class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
           </div>
           {{/if}}
           {{/Students}}
@@ -45,19 +49,23 @@
         <div class="row mx-0">
           {{#Students}}
           {{#if this.Attendances}}
-          {{#eq this.Attendances.0.SectionId 2}}
+          {{#with this.Attendances}}         
+          {{#each this}}
+          {{#eq SectionId 2}}
           <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
-              <button type="button" data-id = {{this.id}} data-section="englishSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{this.id}} disabled>{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{../../this.id}} data-section="englishSection" data-sectionId=2 class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{id}} disabled>{{../../this.firstName}} {{../../this.lastName}}</button>
               <button class="btn btn-danger d-inline-block">Undo</button>
           </div>
           {{else}}
               <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{this.id}} data-section= "englishSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{../../this.id}} data-section= "englishSection" data-sectionId=2 class="btn btn-primary btn-lg btn-block">{{../../this.firstName}} {{../../this.lastName}}</button>
               </div>
           {{/eq}}
+          {{/each}}
+          {{/with}}
           {{else}}
           <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{this.id}} data-section= "englishSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{id}} data-section= "englishSection" data-sectionId=2 class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
           </div>
           {{/if}}
           {{/Students}}
@@ -67,26 +75,29 @@
     {{#eq SectionName "scienceSection"}}
   <div class="tab-pane" id="science" role="tabpanel" aria-labelledby="science-tab">
       <div class="row mx-0">
-        <div class="row mx-0">
           {{#Students}}
           {{#if this.Attendances}}
-          {{#eq this.Attendances.0.SectionId 3}}
+          {{#with this.Attendances}}         
+          {{#each this}}
+          {{#eq SectionId 3}}
           <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
-              <button type="button" data-id = {{this.id}} data-section="scienceSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{this.id}} disabled>{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{../../this.id}} data-section="scienceSection" data-sectionId=3 class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{id}} disabled>{{../../this.firstName}} {{../../this.lastName}}</button>
               <button class="btn btn-danger d-inline-block">Undo</button>
           </div>
           {{else}}
               <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{this.id}} data-section= "scienceSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{../../this.id}} data-section= "scienceSection" data-sectionId=3 class="btn btn-primary btn-lg btn-block">{{../../this.firstName}} {{../../this.lastName}}</button>
               </div>
           {{/eq}}
+          {{/each}}
+          {{/with}}
           {{else}}
           <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{this.id}} data-section= "scienceSection" data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{this.firstName}} {{this.lastName}}</button>
+              <button type="button" data-id = {{id}} data-section= "scienceSection" data-sectionId=3 class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
           </div>
           {{/if}}
           {{/Students}}
-        </div>
+      </div>
   </div>
     {{/eq}}
   {{/sections}}
