@@ -9,13 +9,16 @@ const PORT = 5000;
 const db = require("./models");
 const exphbs = require("express-handlebars");
 const helpers = require('handlebars-helpers')(['comparison','collection','object']);
+const customHelpers = require('./helpers/CustomHandlebars');
 
 // Sets up the Express App
 // =============================================================
 const app = express();
 
 const hbs = exphbs.create({
-    defaultLayout: "main",
+    helpers: {
+        CheckAttendance: customHelpers
+    }
 })
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(path.join(__dirname, 'public')));

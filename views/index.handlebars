@@ -1,109 +1,34 @@
-<body>
-{{> nav }}	
-
 {{!-- Add Source dropdown --}}
 <ul id="myTab" class="nav nav-tabs d-flex" role="tablist">
   <li class="nav-item flex-fill border">
-    <a class="nav-link text-center fs-3" href="#math" >Math</a>
+    <a class="nav-link text-center fs-3" href="#mathSection" >Math</a>
   </li>
   <li class="nav-item flex-fill border">
-    <a class="nav-link text-center fs-3" href="#english" >English</a>
+    <a class="nav-link text-center fs-3" href="#englishSection" >English</a>
   </li>
   <li class="nav-item- flex-fill border">
-    <a class="nav-link text-center fs-3" href="#science">Science/Social Studies</a>
+    <a class="nav-link text-center fs-3" href="#scienceSection">Science/Social Studies</a>
   </li>
 </ul>
-
 <div id="container" class="tab-content">
   {{#sections}}
-  {{#eq SectionName "mathSection"}}
-  <div class="tab-pane" id="math" role="tabpanel" aria-labelledby="math-tab">
-        <div class="row mx-0">
-          {{#Students}}
-          {{#if this.Attendances}}
-          {{#with this.Attendances}}         
-          {{#each this}}
-          {{#eq SectionId 1}}
-          <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
-              <button type="button" data-id = {{../../this.id}} data-section="mathSection" data-sectionId=1 class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{id}} disabled>{{../../this.firstName}} {{../../this.lastName}}</button>
-              <button class="btn btn-danger d-inline-block">Undo</button>
-          </div>
-          {{else}}
-              <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{../../this.id}} data-section= "mathSection" data-sectionId=1 class="btn btn-primary btn-lg btn-block">{{../../this.firstName}} {{../../this.lastName}}</button>
-              </div>
-          {{/eq}}
-          {{/each}}
-          {{/with}}
-          {{else}}
-          <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{id}} data-section= "mathSection" data-sectionId=1 class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
-          </div>
-          {{/if}}
-          {{/Students}}
+  <div class="tab-pane" id={{SectionName}} role="tabpanel" aria-labelledby={{SectionName}}-tab>
+        <div class="row mx-0 justify-content-center">
+        {{#Students}}
+        <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
+        {{#CheckAttendance Attendances ../id}}
+            <button type="button" data-id = {{id}} data-section={{../SectionName}} data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block d-inline-block" disabled data-dbrecord={{@dbRecord}}>{{firstName}} {{lastName}}</button>
+            <button class="btn btn-danger d-inline-block">Undo</button>
+            </div>
+        {{else}}
+            <button type="button" data-id = {{id}} data-section={{../SectionName}} data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
+           </div>
+        {{/CheckAttendance}}
+        {{/Students}}
         </div>
   </div>
-  {{/eq}}
-  {{#eq SectionName "englishSection"}}
-  <div class="tab-pane" id="english" role="tabpanel" aria-labelledby="english-tab">
-        <div class="row mx-0">
-          {{#Students}}
-          {{#if this.Attendances}}
-          {{#with this.Attendances}}         
-          {{#each this}}
-          {{#eq SectionId 2}}
-          <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
-              <button type="button" data-id = {{../../this.id}} data-section="englishSection" data-sectionId=2 class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{id}} disabled>{{../../this.firstName}} {{../../this.lastName}}</button>
-              <button class="btn btn-danger d-inline-block">Undo</button>
-          </div>
-          {{else}}
-              <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{../../this.id}} data-section= "englishSection" data-sectionId=2 class="btn btn-primary btn-lg btn-block">{{../../this.firstName}} {{../../this.lastName}}</button>
-              </div>
-          {{/eq}}
-          {{/each}}
-          {{/with}}
-          {{else}}
-          <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{id}} data-section= "englishSection" data-sectionId=2 class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
-          </div>
-          {{/if}}
-          {{/Students}}
-        </div>
-  </div>
-    {{/eq}}
-    {{#eq SectionName "scienceSection"}}
-  <div class="tab-pane" id="science" role="tabpanel" aria-labelledby="science-tab">
-      <div class="row mx-0">
-          {{#Students}}
-          {{#if this.Attendances}}
-          {{#with this.Attendances}}         
-          {{#each this}}
-          {{#eq SectionId 3}}
-          <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
-              <button type="button" data-id = {{../../this.id}} data-section="scienceSection" data-sectionId=3 class="btn btn-primary btn-lg btn-block d-inline-block" data-dbrecord={{id}} disabled>{{../../this.firstName}} {{../../this.lastName}}</button>
-              <button class="btn btn-danger d-inline-block">Undo</button>
-          </div>
-          {{else}}
-              <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{../../this.id}} data-section= "scienceSection" data-sectionId=3 class="btn btn-primary btn-lg btn-block">{{../../this.firstName}} {{../../this.lastName}}</button>
-              </div>
-          {{/eq}}
-          {{/each}}
-          {{/with}}
-          {{else}}
-          <div class="col-sm-2 px-0 my-1 mx-1">
-              <button type="button" data-id = {{id}} data-section= "scienceSection" data-sectionId=3 class="btn btn-primary btn-lg btn-block">{{firstName}} {{lastName}}</button>
-          </div>
-          {{/if}}
-          {{/Students}}
-      </div>
-  </div>
-    {{/eq}}
   {{/sections}}
-
 </div>
-</body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 <script src="/assets/js/eventOverview.js"></script>

@@ -32,13 +32,11 @@ return;
 
 const AddUndoButton = (e,e2) => {
   $(e).addClass("d-inline-block");
-  $(e2).addClass("d-flex flex-row");
   $(e2).append("<Button class=\"btn btn-danger d-inline-block\">Undo</Button>");
 }
 
 const removeUndoButton = (e,e2) => {
   $(e).removeClass("d-inline-block");
-  $(e2).removeClass("d-flex flex-row");
   $(e2.children[0]).prop("disabled",false);
   $(e).remove();
 }

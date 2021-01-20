@@ -5,28 +5,38 @@ const todayIs = moment().format('YYYY-MM-DD');
 
 
 const getAll =  db.Sections.findAll({
-   attributes: ['id', 'SectionName'],
-   include: [{
-       model: db.Students,
-       attributes: ['id','firstName','lastName'],
-       through: {attributes: []},
-       include:{
-           model: db.Attendance,
-           attributes: ['present'],
-           where: {"present": todayIs},
-           required: false
-       }
-       }] 
-})
-
-const getCurAttendance =  db.Students.findAll({
-    attributes: ['id', 'firstName', 'lastName'],
-    raw: true,
+    attributes: ['id', 'SectionName'],
     include: [{
-        model: db.Attendance,
-        where:{'present': todayIs}
+        model: db.Students,
+        attributes: ['id','firstName','lastName'],
+        through: {attributes: []},
+        include:{
+            model: db.Attendance,
+            attributes: ['present', 'id', 'SectionId'],
+            where: {[db.Sequelize.Op.and]:[
+              {"present":todayIs},
+            ]},
+            separate: true,
+            required: false
+        }
         }] 
  })
+
+
+// include:{
+//     model: db.Attendance,
+//     attributes: ['present'],
+//     where: {"present": todayIs},
+//     required: false
+// }
+// const getCurAttendance =  db.Students.findAll({
+//     attributes: ['id', 'firstName', 'lastName'],
+//     raw: true,
+//     include: [{
+//         model: db.Attendance,
+//         where:{'present': todayIs}
+//         }] 
+//  })
 
 //  function updateAttendance (AllObj, PresentObj) {
 //     if (PresentObj.length === 0){

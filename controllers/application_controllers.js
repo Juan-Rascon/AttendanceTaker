@@ -1,4 +1,3 @@
-const api_controller = require("./api_controllers");
 const myConfig = require('../chart/chartConfigurarion');
 var db = require("../models");
 const moment = require('moment');
@@ -6,7 +5,22 @@ const moment = require('moment');
 const todayIs = moment().format('YYYY-MM-DD');
 
 exports.test = async function(req, res) {
-  res.render('test')
+  let students = await db.Sections.findAll({
+    attributes: ['id', 'SectionName'],
+    include: [{
+        model: db.Students,
+        attributes: ['id','firstName','lastName'],
+        through: {attributes: []},
+        include:{
+            model: db.Attendance,
+            attributes: ['present', 'id', 'SectionId'],
+            where: {"present":todayIs},
+            required: false
+        }
+        }] 
+ })
+  students= JSON.parse(JSON.stringify(students));
+  res.render('test', {sections:students})
 };
 
 exports.index = async function(req, res) {
@@ -19,15 +33,14 @@ exports.index = async function(req, res) {
         include:{
             model: db.Attendance,
             attributes: ['present', 'id', 'SectionId'],
-            where: {"present": todayIs},
+            where: {"present":todayIs},
             required: false
         }
         }] 
  })
   students= JSON.parse(JSON.stringify(students));
-  // console.dir(students, {depth: null})
-  res.render('index', {sections:students});
-};
+  res.render('test', {sections:students})
+}
 
 
 exports.report =  async function(req, res) {
