@@ -15,7 +15,7 @@
   <div class="tab-pane" id={{SectionName}} role="tabpanel" aria-labelledby={{SectionName}}-tab>
         <div class="row mx-0 justify-content-center">
         {{#Students}}
-        <div class="col-sm-2 px-0 my-1 mx-1 d-flex flex-row">
+        <div class="col-sm-3 px-0 my-1 mx-1 d-flex flex-row">
         {{#CheckAttendance Attendances ../id}}
             <button type="button" data-id = {{id}} data-section={{../SectionName}} data-sectionId={{../id}} class="btn btn-primary btn-lg btn-block d-inline-block" disabled data-dbrecord={{@dbRecord}}>{{firstName}} {{lastName}}</button>
             <button class="btn btn-danger d-inline-block">Undo</button>
