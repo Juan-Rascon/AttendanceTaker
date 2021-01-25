@@ -1,4 +1,3 @@
-const myConfig = require('../chart/chartConfigurarion');
 var db = require("../models");
 
 
@@ -10,6 +9,7 @@ function GetLocalISODate(){
 }
 
 const todayIs = GetLocalISODate();
+console.log(todayIs);
 
 exports.test = async function(req, res) {
   let students = await db.Sections.findAll({
