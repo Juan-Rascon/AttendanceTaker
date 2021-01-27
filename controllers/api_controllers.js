@@ -1,7 +1,15 @@
 var db = require("../models");
-const moment = require('moment');
 
-const todayIs = moment().format('YYYY-MM-DD');
+
+function GetLocalISODate(){
+  let yourDate = new Date();
+  const offset = yourDate.getTimezoneOffset()
+  yourDate = new Date(yourDate.getTime() - (offset*60*1000))
+  return yourDate.toISOString().split('T')[0]
+}
+
+let todayIs = GetLocalISODate();
+console.log(todayIs);
 
 exports.undoMarkPresent = async function(req, res) {
     switch(req.params.section) {

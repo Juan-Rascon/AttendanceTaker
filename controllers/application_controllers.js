@@ -8,7 +8,7 @@ function GetLocalISODate(){
   return yourDate.toISOString().split('T')[0]
 }
 
-const todayIs = GetLocalISODate();
+let todayIs = GetLocalISODate();
 console.log(todayIs);
 
 exports.test = async function(req, res) {
