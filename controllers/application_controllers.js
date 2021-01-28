@@ -3,15 +3,14 @@ var db = require("../models");
 
 function GetLocalISODate(){
   let yourDate = new Date();
-  const offset = yourDate.getTimezoneOffset()
+  const offset = 480;
   yourDate = new Date(yourDate.getTime() - (offset*60*1000))
   return yourDate.toISOString().split('T')[0]
 }
 
-let todayIs = GetLocalISODate();
-console.log(todayIs);
-
 exports.test = async function(req, res) {
+  let todayIs = GetLocalISODate();
+  console.log(todayIs);
   let students = await db.Sections.findAll({
     attributes: ['id', 'SectionName'],
     include: [{
@@ -31,6 +30,8 @@ exports.test = async function(req, res) {
 };
 
 exports.index = async function(req, res) {
+  let todayIs = GetLocalISODate();
+  console.log(todayIs);
   let students = await db.Sections.findAll({
     attributes: ['id', 'SectionName'],
     include: [{
@@ -55,21 +56,6 @@ exports.report =  async function(req, res) {
     attributes: ['id','firstName','lastName'],
     order: [['firstName', 'ASC']],
     raw: true})
-//   const event = await db.Sections.findAll({
-//     attributes: ['id', 'SectionName'],
-//     include: [{
-//         model: db.Students,
-//         attributes: ['id','firstName','lastName'],
-//         through: {attributes: []},
-//         include:{
-//             model: db.Attendance,
-//             attributes: ['present'],
-//             where: {"present": todayIs},
-//             required: false
-//         }
-//         }] 
-//  })
-
   res.render("events/report", {layout: 'reports', students: students});
 };
 
