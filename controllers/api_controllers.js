@@ -3,7 +3,7 @@ const convertToValues = require('../helpers/convertToValues');
 
 function GetLocalISODate(){
   let yourDate = new Date();
-  const offset = yourDate.getTimezoneOffset()
+  const offset = 480;
   yourDate = new Date(yourDate.getTime() - (offset*60*1000))
   return yourDate.toISOString().split('T')[0]
 }
