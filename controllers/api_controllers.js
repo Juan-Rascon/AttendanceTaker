@@ -1,5 +1,5 @@
 var db = require("../models");
-
+const convertToValues = require('../helpers/convertToValues');
 
 function GetLocalISODate(){
   let yourDate = new Date();
@@ -41,23 +41,26 @@ exports.undoMarkPresent = async function(req, res) {
         res.status(500).json({"Error":"No Student"})
 }};
 
-// exports.getStudents = async function(req, res) {
-//   const event = await db.Students.findAll({
-//    attributes: ['id', 'SectionName'],
-//    include: [{
-//        model: db.Students,
-//        attributes: ['id','firstName','lastName'],
-//        through: {attributes: []},
-//        include:{
-//            model: db.Attendance,
-//            attributes: ['present'],
-//            where: {"present": todayIs},
-//            required: false
-//        }
-//        }] 
-// })
-//   res.status(200).json(event);
-// };
+exports.getAttendanceRecord = async function(req, res) {
+  //Get Attendance in a Count
+    const arr1 = await db.Attendance.findAll({
+    attributes: ['present',[db.Sequelize.fn('count', db.sequelize.col('present')),'count']],
+    group: ['Attendance.present'],
+    where: {'StudentId':req.params.id}
+    });
+
+  //Get All Sections
+    const getSections = await db.Attendance.findAll({
+      attributes: ['present','sectionId'],
+      where: {'StudentId':req.params.id}
+    });
+
+   //Convert the Attendance and Sections into an array for arrays so it's structured as expected in the
+   //calendar data
+  let studentArray = convertToValues(JSON.parse(JSON.stringify(arr1)), JSON.parse(JSON.stringify(getSections)));
+  
+  res.status(200).json(studentArray);
+};
 
 exports.enroll = async function(req, res) {
   const sections = req.body.section;

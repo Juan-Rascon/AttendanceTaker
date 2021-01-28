@@ -1,22 +1,68 @@
 <h1>Reports</h1>
 
-<html class="zc-html">
-  <head>
-    <meta charset="utf-8">
-    <title>ZingSoft Demo</title>
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-  </head>
-  ​
-  <body class="zc-body">
-  ​
-    <div id="myChart" class="chart--container">
-    </div>
-<script>
-  zingchart.MODULESDIR="http://cdn.zingchart.com/modules/";
-  zingchart.loadModules("maps,maps-usa", function(){
-    // Render your charts with the modules.
-    zingchart.render({...});
+<form id="studentForm" action="/" target="/">
+<div class="form-group">
+  <select name="student" class="form-select" onchange="selectStudent(this.value)" aria-label="Default select example">
+  <option selected>Select Student</option>
+   {{#students}}
+    <option  value={{id}}>{{firstName}} {{lastName}}</option>
+    {{/students}}
+  </select>
+</div>
+</form>
+
+<div id="myChart" class="chart--container">
+
+</div>
+<script src="scripts/calendar/zingchart.min.js"></script>
+<script src="/assets/js/Calendar.js"></script>
+{{!-- <script>
+// DEFINE DATA
+var myConfig = {
+  type: 'calendar', // Set the chart type to 'calendar'.
+  options: {
+    rows: 1,
+    scale: { // Configure the scale indicator
+      direction: 'h', // Set the scale direction: 'h' (horizontal) or 'v' (vertical).
+      label: { // Styles the indicator labels.
+        backgroundColor: '#f5f5f5',
+        fontColor: 'black',
+        fontFamily: 'Arial',
+        fontSize: 12
+      },
+      pointer: { // Styles the scale pointer.
+        type: 'star3',// Set to any shape type
+        size: 4
+      }
+    },
+    values: [
+    ['2021-01-25',1,'Sciene', 'Math', 'English'],
+    ['2021-01-26',2, 'Sciene', 'English'],
+    ['2021-01-27',3, 'Math']
+    ],
+    firstday: 'm',
+  },
+  plot: {
+    tooltip: {
+      text: "Sections Attended:\n %data-info0\n %data-info1\n %data-info2"
+    }
+  },
+  plotarea: {
+    marginTop: '35%',
+    marginBottom: '45%'
+  }
+};
+// RENDER CHARTS
+// -----------------------------
+zingchart.render({
+    id: 'myChart',
+    data: 'myConfig'
   });
+{{!-- zingchart.loadModules('calendar', () => {
+  zingchart.render({
+    id: 'myChart',
+    type: 'calendar'
+  });
+}); --}}
 </script>
-<script src="http://cdn.zingchart.com/modules/zingchart-grid.min.js"></script>
-</html>
+

@@ -1,26 +1,55 @@
-const moment = require('moment');
 const db = require ('../models');
+const convertToValues = require('../helpers/convertToValues');
 
-const todayIs = moment().format('YYYY-MM-DD');
+const getAttendance = async () => {
+  const arr1 = await db.Attendance.findAll({
+  attributes: ['present',[db.Sequelize.fn('count', db.sequelize.col('present')),'count']],
+  group: ['Attendance.present'],
+  where: {'StudentId':1}
+  });
+
+  const getSections = await db.Attendance.findAll({
+    attributes: ['present','sectionId'],
+    where: {'StudentId':1}
+  })
+
+  convertToValues(JSON.parse(JSON.stringify(arr1)), JSON.parse(JSON.stringify(getSections)));
+}
+
+getAttendance();
 
 
-const getAll =  db.Sections.findAll({
-    attributes: ['id', 'SectionName'],
-    include: [{
-        model: db.Students,
-        attributes: ['id','firstName','lastName'],
-        through: {attributes: []},
-        include:{
-            model: db.Attendance,
-            attributes: ['present', 'id', 'SectionId'],
-            where: {[db.Sequelize.Op.and]:[
-              {"present":todayIs},
-            ]},
-            separate: true,
-            required: false
-        }
-        }] 
- })
+
+
+
+
+
+//  getAttendance.then(resp => {
+//   console.dir(JSON.parse(JSON.stringify(resp)),{depth: null})
+// });
+
+// getSections.then(resp => {
+//   console.dir(JSON.parse(JSON.stringify(resp)),{depth: null})
+// });
+
+
+// const getAll =  db.Sections.findAll({
+//     attributes: ['id', 'SectionName'],
+//     include: [{
+//         model: db.Students,
+//         attributes: ['id','firstName','lastName'],
+//         through: {attributes: []},
+//         include:{
+//             model: db.Attendance,
+//             attributes: ['present', 'id', 'SectionId'],
+//             where: {[db.Sequelize.Op.and]:[
+//               {"present":todayIs},
+//             ]},
+//             separate: true,
+//             required: false
+//         }
+//         }] 
+//  })
 
 
 // include:{
@@ -50,12 +79,7 @@ const getAll =  db.Sections.findAll({
 //  }
 //  getAll.then(resp => {
 //     console.log(JSON.parse(JSON.stringify(resp)))
-//     console.log(resp.length)});
-
-getAll.then(resp => {
-        console.dir(JSON.parse(JSON.stringify(resp)),{depth: null})
-        console.log(resp.length)});
-    
+//     console.log(resp.length)});    
 //     resp.forEach(function (arrayItem,ind,resp) {
 //     if (arrayItem["Attendances.Section.id"] === null){
 //          let array1 = {...arrayItem, "Attendances.Section.id":1};

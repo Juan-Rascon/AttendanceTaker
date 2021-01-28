@@ -8,7 +8,6 @@ const path = require('path');
 const PORT = 5000;
 const db = require("./models");
 const exphbs = require("express-handlebars");
-const helpers = require('handlebars-helpers')(['comparison','collection','object']);
 const customHelpers = require('./helpers/CustomHandlebars');
 
 // Sets up the Express App
@@ -22,6 +21,8 @@ const hbs = exphbs.create({
 })
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/scripts/calendar', express.static(__dirname + '/node_modules/zingchart/'));
+app.use('/modules', express.static(__dirname + '/node_modules/zingchart/modules/'));
 
 // Parse application body as JSON
 app.use(express.urlencoded({ extended: true }));

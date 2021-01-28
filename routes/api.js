@@ -11,4 +11,6 @@ router.put("/students/:section/:id", api_controller.undoMarkPresent);
 
 router.post("/enroll", api_controller.enroll);
 
+router.get("/getAttendanceRecord/:id", api_controller.getAttendanceRecord);
+
 module.exports = router

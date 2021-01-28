@@ -1,5 +1,4 @@
-
-const myConfig = {
+exports.myConfig = {
     type: 'calendar', // Set the chart type to 'calendar'.
     options: {
       rows: 1,
@@ -16,7 +15,11 @@ const myConfig = {
           size: 4
         }
       },
-      values: [],
+      values: [
+      ['2021-01-25',1,'Sciene', 'Math', 'English'],
+      ['2021-01-26',2, 'Sciene', 'English'],
+      ['2021-01-27',3, 'Math']
+      ],
       firstday: 'm',
     },
     plot: {
@@ -29,18 +32,3 @@ const myConfig = {
       marginBottom: '45%'
     }
   };
-
-const selectStudent = (id) => {
-   $.ajax({
-        url: `/api/getAttendanceRecord/${id}`,
-        method: "GET",
-    }).done((data)=>{
-        myConfig.options.values = data;
-        zingchart.render({
-            id: 'myChart',
-            data: myConfig
-          })
-        console.log(data);
-    });
-    return;
-};

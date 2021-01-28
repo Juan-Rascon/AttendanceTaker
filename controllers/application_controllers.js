@@ -51,27 +51,26 @@ exports.index = async function(req, res) {
 
 
 exports.report =  async function(req, res) {
-  const event = await db.Sections.findAll({
-    attributes: ['id', 'SectionName'],
-    include: [{
-        model: db.Students,
-        attributes: ['id','firstName','lastName'],
-        through: {attributes: []},
-        include:{
-            model: db.Attendance,
-            attributes: ['present'],
-            where: {"present": todayIs},
-            required: false
-        }
-        }] 
- })
+  const students = await db.Students.findAll({
+    attributes: ['id','firstName','lastName'],
+    order: [['firstName', 'ASC']],
+    raw: true})
+//   const event = await db.Sections.findAll({
+//     attributes: ['id', 'SectionName'],
+//     include: [{
+//         model: db.Students,
+//         attributes: ['id','firstName','lastName'],
+//         through: {attributes: []},
+//         include:{
+//             model: db.Attendance,
+//             attributes: ['present'],
+//             where: {"present": todayIs},
+//             required: false
+//         }
+//         }] 
+//  })
 
-  // zingchart.render({
-  //   id:'Ms Manzo\'s Roll Call',
-  //   data: myConfig
-  // });
-
-  res.render("events/report");
+  res.render("events/report", {layout: 'reports', students: students});
 };
 
 exports.admin = async function(req, res) {
