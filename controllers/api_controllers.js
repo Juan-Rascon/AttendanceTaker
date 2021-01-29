@@ -1,15 +1,23 @@
 var db = require("../models");
 const convertToValues = require('../helpers/convertToValues');
 
-function GetLocalISODate(){
+function LocalDate(){
   let yourDate = new Date();
   const offset = 480;
   yourDate = new Date(yourDate.getTime() - (offset*60*1000))
-  return yourDate.toISOString().split('T')[0]
+  return yourDate
 }
 
-let todayIs = GetLocalISODate();
-console.log(todayIs);
+var getDaysArray = function() {
+  let today = new Date();
+  const offset = 480;
+  today = new Date(today.getTime() - (offset*60*1000))
+  let year = new Date(today.getTime() - (offset*60*1000)).getFullYear();
+  for(var arr=[],dt=new Date(year-1, 7, 1); dt<=today; dt.setDate(dt.getDate()+1)){
+      arr.push(new Date(dt).toISOString().split('T')[0]);
+  }
+  return arr;
+};
 
 exports.undoMarkPresent = async function(req, res) {
     switch(req.params.section) {
@@ -78,7 +86,7 @@ exports.markPresent = async function(req, res) {
       const englishAtt = await db.Attendance.create(
         {StudentId: req.params.id,
          SectionId: 2,
-         present: new Date()}
+         present: LocalDate()}
       );
      res.status(200).json(englishAtt);
      break;
@@ -86,7 +94,7 @@ exports.markPresent = async function(req, res) {
       const mathAtt = await db.Attendance.create(
         {StudentId: req.params.id,
          SectionId: 1,
-         present: new Date()}
+         present: LocalDate()}
       );
       res.status(200).json(mathAtt);
       break;
@@ -94,7 +102,7 @@ exports.markPresent = async function(req, res) {
       const scienceAtt = await db.Attendance.create(
               {StudentId: req.params.id,
                SectionId: 3,
-               present: new Date()}
+               present: LocalDate()}
             ); 
        res.status(200).json(scienceAtt);
        break;
@@ -102,3 +110,4 @@ exports.markPresent = async function(req, res) {
       res.status(500).json({"Error":"No Student"})
   } 
 };
+
